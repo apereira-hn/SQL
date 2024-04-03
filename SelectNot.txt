@@ -1,0 +1,36 @@
+SELECT COUNT(*) FROM Test;
+
+SELECT score, name, firstname FROM Notation, Student;
+
+SELECT score, name, firstname, wording FROM Notation, Student, Test, Matter;
+
+SELECT score FROM Notation WHERE score >= 10;
+
+SELECT name, firstname FROM Notation n
+	JOIN Student s ON n.numstud = s.numstud
+	WHERE score = 20;
+
+SELECT name, firstname, AVG(score) FROM Notation n
+	JOIN Student s ON n.numstud = s.numstud
+	GROUP BY s.numstud;
+
+SELECT * FROM Test
+	WHERE testdate BETWEEN '2014-01-01' AND '2014-06-30';
+
+SELECT numtest, testdate, place, wording FROM Test, Matter;
+
+SELECT name, firstname, AVG(score) FROM Notation n
+	JOIN Student s ON n.numstud = s.numstud
+	GROUP BY s.numstud
+	ORDER BY AVG DESC;
+
+SELECT wording, AVG(score) FROM Notation n
+	JOIN Test t ON n.numtest = t.numtest
+	JOIN Matter m ON t.codemat = m.codemat
+	GROUP BY wording
+	HAVING COUNT(t.numtest) > 1;
+
+SELECT t.numtest, AVG(score) FROM Notation n
+	JOIN Test t ON n.numtest = t.numtest
+	GROUP BY t.numtest
+	HAVING COUNT(numstud) < 6;

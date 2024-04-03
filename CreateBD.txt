@@ -1,0 +1,36 @@
+CREATE DATABASE StudentTestDB;
+
+USE StudentTestDB;
+
+CREATE TABLE Matter (
+    codemat CHAR(255) PRIMARY KEY,
+    wording CHAR(255),
+    coef FLOAT
+);
+
+CREATE TABLE Student (
+    numstud INT PRIMARY KEY,
+    name CHAR(255),
+    firstname CHAR(255),
+    dateofbirth DATE,
+    street CHAR(255),
+    postalcod CHAR(255),
+    city CHAR(255)
+);
+
+CREATE TABLE Test (
+    numtest INT PRIMARY KEY,
+    testdate DATE,
+    place CHAR(255),
+    codemat CHAR(255),
+    FOREIGN KEY (codemat) REFERENCES Matter(codemat)
+);
+
+CREATE TABLE Notation (
+    numstud INT,
+    numtest INT,
+    score FLOAT,
+    PRIMARY KEY (numstud, numtest),
+    FOREIGN KEY (numstud) REFERENCES Student(numstud),
+    FOREIGN KEY (numtest) REFERENCES Test(numtest)
+);

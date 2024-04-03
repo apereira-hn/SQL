@@ -1,0 +1,3 @@
+SELECT wording, coef * 100 AS "Coefficient (%)" FROM Matter;
+
+SELECT SUM(coef) AS "Sum of Coefficients" FROM Matter;
